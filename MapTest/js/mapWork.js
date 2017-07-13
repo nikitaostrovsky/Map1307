@@ -49,35 +49,7 @@ ymaps.ready(function () {
     });
     
     // Добавляем маршрут на карту.
-    myMap.geoObjects.add(currentRoute);
-//    var newRoute = ymaps.route(['Кронштадт, Якорная площадь',
-//                 'Санкт-Петербург, Финляндский вокзал'], {avoidTrafficJams: true});
-    //alert(newRoute.getTime());
-    
-    /*ymaps.route([		//неработающая промис хуйня
-                 'Королёв',
-                 { type: 'viaPoint', point: 'Мытищи' },
-                 'Химки',
-                 { type: 'wayPoint', point: [55.811511, 37.312518] }
-             ], {
-                 mapStateAutoApply: true
-             }).then(function (route) {
-                 route.getPaths().options.set({
-                     // В балуне выводим только информацию о времени движения с учетом пробок.
-                     balloonContentLayout: ymaps.templateLayoutFactory.createClass('{{ properties.humanJamsTime }}'),
-                     // Можно выставить настройки графики маршруту.
-                     strokeColor: '0000ffff',
-                     opacity: 0.9
-                 });
-                 // добавляем маршрут на карту
-                 window.map.geoObjects.add(route);
-                 alert(route.getPaths());
-             });*/
-    
-//    ymaps.route(['Москва', 'Питер'],{}, function (route) {alert(route);
-//    								}, function (route) {alert(route);
-//    								});
-//    }
+    myMap.geoObjects.add(currentRoute);	
     
     }
 });

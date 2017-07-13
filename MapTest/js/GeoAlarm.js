@@ -1,6 +1,7 @@
 var circle, myMap2;
 
 ymaps.ready(function () {																			//при вызове сохраняются координаты цели
+	
 	var targetCoords = [55.751374, 37.618826];	//Кремль			
 	
 	myMap2 = new ymaps.Map("map", {																	//создается карта (КЭП)
@@ -13,10 +14,7 @@ ymaps.ready(function () {																			//при вызове сохраня
 	
 	circle = new ymaps.Circle([targetCoords, 5000], null, {});										//создается круг вокруг цели
 	myMap2.geoObjects.add(circle);
-//	setInterval(getPos, 1000);
-	getPos();
-	getPos();
-	getPos();
+	setInterval(getPos, 1000);
 	
 	function getPos() {
 		navigator.geolocation.watchPosition(onPosGet);												//вызывается функция onPosGet
@@ -39,6 +37,8 @@ ymaps.ready(function () {																			//при вызове сохраня
 	
 	function checkInside() {
 		    var objectsInsideCircle = ymaps.geoQuery(myMap2.geoObjects).searchInside(circle);
+		    ymaps.geoQuery(ymaps.geocode('Schelkovo')).addToMap(myMap2);	//RABOTAET!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		    alert(ymaps.geocode('Schelkovo').getCoordinates());
 	        if (objectsInsideCircle.getLength() > 0)
 	        	{
 	        		console.log("DZIN DZIN DZIN EPTA TI PRIEHAL VIHODI!! Objects on map: " + myMap2.geoObjects.getLength());
