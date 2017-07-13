@@ -34,14 +34,26 @@ ymaps.ready(function () {
 
     // Переменные, в которых будут храниться ссылки на текущий маршрут.
         currentRoute;
+    
+	    var actualProvider = new ymaps.traffic.provider.Actual({}, {infoLayerShown: true});					//слой пробок
+	    actualProvider.setMap(myMap)
 
     // Добавляем конечную и начальную точки на карту. 									//вывод шариков на карту
       myMap.geoObjects.add(targetPoint);
       myMap.geoObjects.add(sourcePoint);
 
-
+      ymaps.route([window.targetCoords, fromCoords], {
+    	    multiRoute: false
+    	}).done(function (route) {
+    	    route.options.set("mapStateAutoApply", true);
+    	    alert("Time:" + route.getTime() + "\n JamsTime: " + route.getJamsTime());
+    	    myMap.geoObjects.add(route);
+    	}, function (err) {
+    	    throw err;
+    	}, this);
+      
     // Создаём маршрут нужного типа из начальной в конечную точку.
-    currentRoute = new ymaps.multiRouter.MultiRoute({
+/*    currentRoute = new ymaps.multiRouter.MultiRoute({
         referencePoints: [sourcePoint, targetPoint],
         params: { routingMode: 'auto'}
     }, {
@@ -50,7 +62,7 @@ ymaps.ready(function () {
     
     // Добавляем маршрут на карту.
     myMap.geoObjects.add(currentRoute);	
-    
+  */  
     }
 });
 
